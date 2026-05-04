@@ -157,3 +157,25 @@
     border-color: #9ca3af;
   }
 }
+
+@media (max-width: 640px) {
+  .summary {
+    margin: 1rem auto;
+    padding: 1rem;
+    bottom: 0.5rem;
+  }
+
+  .summary__item {
+    grid-template-columns: 1fr auto auto;
+    gap: 0.25rem 0.75rem;
+  }
+
+  .summary__category {
+    grid-column: 1 / -1;
+    font-size: 0.7rem;
+  }
+
+  .summary__price {
+    white-space: nowrap;
+  }
+}

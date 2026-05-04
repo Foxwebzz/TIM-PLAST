@@ -5,19 +5,10 @@ import { PriceRow, PricingTableComponent } from '../pricing-table/pricing-table.
   selector: 'app-jednokrilni-alu',
   standalone: true,
   imports: [PricingTableComponent],
-  template: `
-    <app-pricing-table
-      [title]="title"
-      [description]="description"
-      [category]="category"
-      [rows]="rows"
-    />
-  `,
+  template: ` <app-pricing-table [title]="title" [category]="category" [rows]="rows" /> `,
 })
 export class JednokrilniAluComponent {
   readonly title = 'A) JEDNOKRILNI ALU PROZORI';
-  readonly description =
-    'ALU prozori sa termo-prekidom pružaju odličnu izolaciju. Cena počinje od 145€ bez ugradnje.';
   readonly category = 'jednokrilni-alu';
   readonly rows: PriceRow[] = [
     { dimensions: '50x50', withoutInstallation: 145, withInstallation: 165 },

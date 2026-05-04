@@ -21,11 +21,17 @@
             [class.pricing-table__row--selected]="isSelected(row)"
             (click)="toggle(row)"
           >
-            <td>{{ row.dimensions }}</td>
-            <td>{{ row.withoutInstallation }}€</td>
-            <td>{{ row.withInstallation }}€</td>
-            <td class="pricing-table__qty-cell" (click)="$event.stopPropagation()">
-              <div class="pricing-table__stepper">
+            <td class="pricing-table__cell pricing-table__cell--dim" [attr.data-label]="firstColumnLabel()">
+              {{ row.dimensions }}
+            </td>
+            <td class="pricing-table__cell" data-label="Bez ugradnje">
+              {{ row.withoutInstallation }}€
+            </td>
+            <td class="pricing-table__cell" data-label="Sa ugradnjom">
+              {{ row.withInstallation }}€
+            </td>
+            <td class="pricing-table__cell pricing-table__qty-cell" data-label="Količina">
+              <div class="pricing-table__stepper" (click)="$event.stopPropagation()">
                 <button
                   type="button"
                   class="pricing-table__step-btn"

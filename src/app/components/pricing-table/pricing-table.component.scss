@@ -38,6 +38,7 @@
     font-weight: 600;
     letter-spacing: 0.05em;
     font-size: 0.75rem;
+    white-space: nowrap;
   }
 
   tbody td {
@@ -114,4 +115,100 @@
   font-weight: 600;
   font-size: 0.9rem;
   color: #1f2937;
+}
+
+@media (max-width: 640px) {
+  .pricing-table {
+    margin: 1.25rem auto;
+    padding: 0 0.75rem;
+  }
+
+  .pricing-table__wrap {
+    border: none;
+    border-radius: 0;
+    overflow: visible;
+    background: transparent;
+  }
+
+  .pricing-table__table {
+    display: block;
+
+    thead {
+      display: none;
+    }
+
+    tbody {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    tbody td {
+      padding: 0;
+      border-top: none;
+    }
+  }
+
+  .pricing-table__row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.5rem 1rem;
+    padding: 1rem;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+
+    &--selected {
+      border-color: #93c5fd;
+      background: #eff6ff;
+
+      &:hover {
+        background: #dbeafe;
+      }
+    }
+  }
+
+  .pricing-table__cell {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.95rem;
+
+    &::before {
+      content: attr(data-label);
+      color: #6b7280;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-right: 0.75rem;
+    }
+  }
+
+  .pricing-table__cell--dim {
+    grid-column: 1 / -1;
+    font-weight: 600;
+    font-size: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px dashed #e5e7eb;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  .pricing-table__qty-cell {
+    grid-column: 1 / -1;
+    text-align: left;
+  }
+
+  .pricing-table__stepper {
+    margin-left: auto;
+  }
+
+  .pricing-table__step-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 1.1rem;
+  }
 }
