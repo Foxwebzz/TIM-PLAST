@@ -1,0 +1,54 @@
+<section class="pricing-table">
+  <h2 class="pricing-table__title">{{ title() }}</h2>
+  @if (description()) {
+    <p class="pricing-table__description">{{ description() }}</p>
+  }
+
+  <div class="pricing-table__wrap">
+    <table class="pricing-table__table">
+      <thead>
+        <tr>
+          <th>{{ firstColumnLabel() }}</th>
+          <th>BEZ UGRADNJE</th>
+          <th>SA UGRADNJOM</th>
+          <th class="pricing-table__qty-col">KOLIČINA</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (row of rows(); track row.dimensions) {
+          <tr
+            class="pricing-table__row"
+            [class.pricing-table__row--selected]="isSelected(row)"
+            (click)="toggle(row)"
+          >
+            <td>{{ row.dimensions }}</td>
+            <td>{{ row.withoutInstallation }}€</td>
+            <td>{{ row.withInstallation }}€</td>
+            <td class="pricing-table__qty-cell" (click)="$event.stopPropagation()">
+              <div class="pricing-table__stepper">
+                <button
+                  type="button"
+                  class="pricing-table__step-btn"
+                  (click)="decrement(row)"
+                  [disabled]="quantity(row) === 0"
+                  aria-label="Smanji količinu"
+                >
+                  −
+                </button>
+                <span class="pricing-table__qty">{{ quantity(row) }}</span>
+                <button
+                  type="button"
+                  class="pricing-table__step-btn"
+                  (click)="increment(row)"
+                  aria-label="Povećaj količinu"
+                >
+                  +
+                </button>
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</section>

@@ -1,0 +1,68 @@
+<section class="summary" [class.summary--collapsed]="collapsed()">
+  <button
+    type="button"
+    class="summary__header"
+    (click)="toggle()"
+    [attr.aria-expanded]="!collapsed()"
+    [attr.aria-label]="collapsed() ? 'Proširi račun' : 'Smanji račun'"
+  >
+    <h3 class="summary__title">Ukupno</h3>
+    @if (collapsed() && selection.totalItemCount() > 0) {
+      <span class="summary__count">{{ selection.totalItemCount() }}</span>
+    }
+    <svg
+      class="summary__chevron"
+      viewBox="0 0 24 24"
+      width="20"
+      height="20"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path
+        d="M6 9l6 6 6-6"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  </button>
+
+  @if (!collapsed()) {
+    @if (selection.selected().length === 0) {
+      <p class="summary__empty">
+        Niste odabrali nijednu stavku. Kliknite na red u tabeli da ga dodate.
+      </p>
+    } @else {
+      <ul class="summary__list">
+        @for (item of selection.selected(); track item.category + '::' + item.dimensions) {
+          <li class="summary__item">
+            <span class="summary__category">{{ item.category }}</span>
+            <span class="summary__dim">{{ item.dimensions }}</span>
+            <span class="summary__qty">×{{ item.quantity }}</span>
+            <span class="summary__price">
+              {{ item.withoutInstallation * item.quantity }}€ /
+              {{ item.withInstallation * item.quantity }}€
+            </span>
+          </li>
+        }
+      </ul>
+
+      <div class="summary__totals">
+        <div class="summary__total">
+          <span>Ukupno bez ugradnje:</span>
+          <strong>{{ selection.totalWithoutInstallation() }}€</strong>
+        </div>
+        <div class="summary__total">
+          <span>Ukupno sa ugradnjom:</span>
+          <strong>{{ selection.totalWithInstallation() }}€</strong>
+        </div>
+      </div>
+
+      <button type="button" class="summary__clear" (click)="selection.clear()">
+        Poništi izbor
+      </button>
+    }
+  }
+</section>

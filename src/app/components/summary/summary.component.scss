@@ -1,0 +1,159 @@
+.summary {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: #1f2937;
+  position: sticky;
+  bottom: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.summary__header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  margin: 0 0 1rem;
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+
+  &:hover .summary__chevron {
+    color: #111827;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+}
+
+.summary--collapsed .summary__header {
+  margin-bottom: 0;
+}
+
+.summary__title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.summary__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 0.5rem;
+  background: #2b2f36;
+  color: #fff;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-left: -0.25rem;
+}
+
+.summary__chevron {
+  color: #6b7280;
+  transition: transform 0.2s ease;
+  transform: rotate(180deg);
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.summary--collapsed .summary__chevron {
+  transform: rotate(0deg);
+}
+
+.summary__empty {
+  margin: 0;
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.summary__list {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+}
+
+.summary__item {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr auto 1fr;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed #e5e7eb;
+  font-size: 0.9rem;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.summary__qty {
+  color: #374151;
+  font-weight: 600;
+  font-size: 0.85rem;
+  min-width: 30px;
+  text-align: center;
+}
+
+.summary__category {
+  color: #6b7280;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.summary__dim {
+  font-weight: 500;
+}
+
+.summary__price {
+  color: #6b7280;
+  text-align: right;
+}
+
+.summary__totals {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #d1d5db;
+}
+
+.summary__total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+
+  strong {
+    color: #111827;
+  }
+}
+
+.summary__clear {
+  margin-top: 1rem;
+  background: transparent;
+  border: 1px solid #d1d5db;
+  color: #374151;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+
+  &:hover {
+    background: #fff;
+    border-color: #9ca3af;
+  }
+}

@@ -1,0 +1,117 @@
+.pricing-table {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: #1f2937;
+}
+
+.pricing-table__title {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.pricing-table__description {
+  margin: 0 0 1rem;
+  color: #4b5563;
+  font-size: 0.9rem;
+}
+
+.pricing-table__wrap {
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.pricing-table__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+
+  thead th {
+    background: #2b2f36;
+    color: #fff;
+    text-align: left;
+    padding: 1rem 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    font-size: 0.75rem;
+  }
+
+  tbody td {
+    padding: 1rem 1.25rem;
+    border-top: 1px solid #f1f3f5;
+    color: #374151;
+  }
+}
+
+.pricing-table__row {
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background: #f9fafb;
+  }
+
+  &--selected {
+    background: #dbeafe;
+
+    &:hover {
+      background: #bfdbfe;
+    }
+  }
+}
+
+.pricing-table__qty-col {
+  width: 140px;
+  text-align: center;
+}
+
+.pricing-table__qty-cell {
+  text-align: center;
+  cursor: default;
+}
+
+.pricing-table__stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.pricing-table__step-btn {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: transparent;
+  color: #374151;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+
+  &:hover:not(:disabled) {
+    background: #f3f4f6;
+  }
+
+  &:disabled {
+    color: #d1d5db;
+    cursor: not-allowed;
+  }
+}
+
+.pricing-table__qty {
+  min-width: 24px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #1f2937;
+}
