@@ -170,18 +170,15 @@
 
   .pricing-table__cell {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 0.95rem;
+    align-items: baseline;
+    gap: 0.35rem;
+    font-size: 0.9rem;
 
     &::before {
-      content: attr(data-label);
+      content: attr(data-label) " -";
       color: #6b7280;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin-right: 0.75rem;
+      font-size: 0.85rem;
+      font-weight: 500;
     }
   }
 
@@ -200,10 +197,11 @@
   .pricing-table__qty-cell {
     grid-column: 1 / -1;
     text-align: left;
+    align-items: center;
   }
 
   .pricing-table__stepper {
-    margin-left: auto;
+    margin-left: 0;
   }
 
   .pricing-table__step-btn {
