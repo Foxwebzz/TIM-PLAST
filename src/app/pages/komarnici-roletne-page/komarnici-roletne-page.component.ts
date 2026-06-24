@@ -1,14 +1,10 @@
 import { Component } from '@angular/core';
-import { RoletneComponent } from '../../components/roletne/roletne.component';
-import { KomarniciComponent } from '../../components/komarnici/komarnici.component';
+import { AreaCalculatorComponent } from '../../components/area-calculator/area-calculator.component';
 
 @Component({
   selector: 'app-komarnici-roletne-page',
   standalone: true,
-  imports: [RoletneComponent, KomarniciComponent],
-  template: `
-    <app-roletne />
-    <app-komarnici />
-  `,
+  imports: [AreaCalculatorComponent],
+  template: ` <app-area-calculator /> `,
 })
 export class KomarniciRoletnePageComponent {}

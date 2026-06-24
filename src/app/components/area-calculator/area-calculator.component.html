@@ -1,0 +1,82 @@
+<section class="calc">
+  <h2 class="calc__title">Izračunaj cenu po dimenzijama (po m²)</h2>
+
+  <div class="calc__form">
+    <div class="calc__types">
+      @for (p of products; track p.category; let i = $index) {
+        <button
+          type="button"
+          class="calc__type"
+          [class.calc__type--active]="productIndex() === i"
+          (click)="setProduct(i)"
+        >
+          {{ p.label }}
+          <span class="calc__type-rate">{{ p.pricePerM2 }}€/m²</span>
+        </button>
+      }
+    </div>
+
+    <div class="calc__fields">
+      <label class="calc__field">
+        <span class="calc__label">Širina (cm)</span>
+        <input
+          class="calc__input"
+          type="number"
+          inputmode="numeric"
+          min="0"
+          [value]="width() ?? ''"
+          (input)="setWidth($any($event.target).value)"
+          (keyup.enter)="search()"
+        />
+      </label>
+
+      <span class="calc__times">×</span>
+
+      <label class="calc__field">
+        <span class="calc__label">Visina (cm)</span>
+        <input
+          class="calc__input"
+          type="number"
+          inputmode="numeric"
+          min="0"
+          [value]="height() ?? ''"
+          (input)="setHeight($any($event.target).value)"
+          (keyup.enter)="search()"
+        />
+      </label>
+
+      <button type="button" class="calc__search" (click)="search()">Izračunaj</button>
+    </div>
+  </div>
+
+  @if (searched() && width() && height()) {
+    @if (result(); as row) {
+      <div class="calc__result">
+        <div class="calc__result-info">
+          <span class="calc__result-dim">{{ row.dimensions }} cm</span>
+          <span class="calc__result-type">
+            {{ product().label }} · {{ area() | number: '1.2-2' }} m² × {{ product().pricePerM2 }}€/m²
+          </span>
+        </div>
+        <div class="calc__result-prices">
+          <span class="calc__result-price">
+            <span class="calc__result-price-label">Bez ugradnje</span>
+            <strong>{{ row.withoutInstallation }}€</strong>
+          </span>
+          <span class="calc__result-price">
+            <span class="calc__result-price-label">Sa ugradnjom</span>
+            <strong>{{ row.withInstallation }}€</strong>
+          </span>
+        </div>
+        <button type="button" class="calc__add" (click)="addToTotal()">
+          Dodaj u račun
+          @if (quantity() > 0) {
+            <span class="calc__add-count">{{ quantity() }}</span>
+          }
+        </button>
+      </div>
+    } @else {
+      <p class="calc__empty">Unesite ispravnu širinu i visinu.</p>
+    }
+  }
+</section>

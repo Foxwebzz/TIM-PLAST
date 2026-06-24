@@ -1,0 +1,82 @@
+<section class="lookup">
+  <h2 class="lookup__title">Pronađi prozor po dimenzijama</h2>
+
+  <div class="lookup__form">
+    <div class="lookup__types">
+      @for (key of typeKeys; track key) {
+        <button
+          type="button"
+          class="lookup__type"
+          [class.lookup__type--active]="type() === key"
+          (click)="setType(key)"
+        >
+          {{ typeLabels[key] }}
+        </button>
+      }
+    </div>
+
+    <div class="lookup__fields">
+      <label class="lookup__field">
+        <span class="lookup__label">Širina (cm)</span>
+        <input
+          class="lookup__input"
+          type="number"
+          inputmode="numeric"
+          min="0"
+          [value]="width() ?? ''"
+          (input)="setWidth($any($event.target).value)"
+          (keyup.enter)="search()"
+        />
+      </label>
+
+      <span class="lookup__times">×</span>
+
+      <label class="lookup__field">
+        <span class="lookup__label">Visina (cm)</span>
+        <input
+          class="lookup__input"
+          type="number"
+          inputmode="numeric"
+          min="0"
+          [value]="height() ?? ''"
+          (input)="setHeight($any($event.target).value)"
+          (keyup.enter)="search()"
+        />
+      </label>
+
+      <button type="button" class="lookup__search" (click)="search()">Prikaži</button>
+    </div>
+  </div>
+
+  @if (searched() && width() && height()) {
+    @if (result(); as row) {
+      <div class="lookup__result">
+        <div class="lookup__result-info">
+          <span class="lookup__result-dim">{{ row.dimensions }} cm</span>
+          <span class="lookup__result-type">{{ typeLabels[type()] }} PVC prozor</span>
+        </div>
+        <div class="lookup__result-prices">
+          <span class="lookup__result-price">
+            <span class="lookup__result-price-label">Bez ugradnje</span>
+            <strong>{{ row.withoutInstallation }}€</strong>
+          </span>
+          <span class="lookup__result-price">
+            <span class="lookup__result-price-label">Sa ugradnjom</span>
+            <strong>{{ row.withInstallation }}€</strong>
+          </span>
+        </div>
+        <button type="button" class="lookup__add" (click)="addToTotal()">
+          Dodaj u račun
+          @if (quantity() > 0) {
+            <span class="lookup__add-count">{{ quantity() }}</span>
+          }
+        </button>
+      </div>
+    } @else {
+      <p class="lookup__empty">
+        Nema cene za dimenziju {{ width() }}×{{ height() }} cm ({{ typeLabels[type()] }}).
+        Proveri dimenzije ili tip prozora.
+      </p>
+    }
+  }
+</section>
